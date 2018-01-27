@@ -4,7 +4,7 @@
 
 # Personal details
 
-* Name: Chenglong Chen
+* Name: Chenglong
 * Location: Guangzhou, Guangdong, China
 * Email: c.chenglong@gmail.com
 * Competition: Search Results Relevance

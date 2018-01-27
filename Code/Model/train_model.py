@@ -149,6 +149,7 @@ def hyperopt_obj(param, feat_folder, feat_name, trial_counter):
                 X_valid = hstack([X_valid, np.zeros((X_valid.shape[0], X_train.shape[1]-X_valid.shape[1]))])
             elif X_valid.shape[1] > X_train.shape[1]:
                 X_train = hstack([X_train, np.zeros((X_train.shape[0], X_valid.shape[1]-X_train.shape[1]))])
+            # ??? why augment the features here?
             X_train = X_train.tocsr()
             X_valid = X_valid.tocsr()
             ## load weight
@@ -444,7 +445,8 @@ def hyperopt_obj(param, feat_folder, feat_name, trial_counter):
                 pred_valid = pred
                 ## this bagging iteration
                 preds_bagging[:,n] = pred_valid
-                pred_raw = np.mean(preds_bagging[:,:(n+1)], axis=1)
+                pred_raw = np.mean(preds_bagging[:,:(n+1)], axis=1)   
+                # why do we need to do this average over different bagging sample?2
                 pred_rank = pred_raw.argsort().argsort()
                 pred_score, cutoff = getScore(pred_rank, cdf_valid, valid=True)
                 kappa_valid = quadratic_weighted_kappa(pred_score, Y_valid)

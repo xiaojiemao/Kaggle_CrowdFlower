@@ -89,7 +89,7 @@ def combine_feat(feat_names, feat_path_name):
                 elif x_valid.shape[1] > x_train.shape[1]:
                     x_train = hstack([x_train, np.zeros((x_train.shape[0], dim_diff))]).tocsr()
 
-                ## apply transformation
+                ## apply transformation: what's the difference here: fit_transform and transform
                 x_train = transformer.fit_transform(x_train)
                 x_valid = transformer.transform(x_valid)
 
